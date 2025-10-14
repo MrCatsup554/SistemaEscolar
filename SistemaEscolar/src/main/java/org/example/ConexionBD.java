@@ -51,7 +51,24 @@ public class ConexionBD {
             throw new RuntimeException(e);
         }
     }
-}
+    public void selectMateria(int id_materia){
+        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            Statement sentencia = con.createStatement();
+            String sql =
+                    "select descripcion, semestre, creditos from materias where id_materia = " + id_materia + ";";
+            ResultSet resultado = sentencia.executeQuery(sql);
+
+            while(resultado.next()){
+                String descripcion = resultado.getString(1);
+                String semestre = resultado.getString(2);
+                String creditos = resultado.getString(2);
+                System.out.println("meterias: " + descripcion + " " + semestre + " " + creditos);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 public void selectAsistencias(int id_asistencia){

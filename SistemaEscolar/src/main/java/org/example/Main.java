@@ -9,6 +9,7 @@ public class Main {
         ConexionBD bd = new ConexionBD();
         bd.selectPersonas(50);
         bd.selectAsistencias(50);
+        bd.selectMateria(50);
     }
 
 }
