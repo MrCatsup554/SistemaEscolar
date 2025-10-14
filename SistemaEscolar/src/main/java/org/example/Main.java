@@ -8,5 +8,7 @@ public class Main {
     public static void main(String[] args) throws JSchException, SQLException {
         ConexionBD bd = new ConexionBD();
         bd.selectPersonas(50);
+        bd.selectAsistencias(50);
     }
+
 }

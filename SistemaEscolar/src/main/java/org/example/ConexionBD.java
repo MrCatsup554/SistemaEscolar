@@ -52,3 +52,22 @@ public class ConexionBD {
         }
     }
 }
+
+
+public void selectAsistencias(int id_asistencia){
+    try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+        Statement sentencia = con.createStatement();
+        String sql =
+                "select id_inscripcion, fecha  from asistencias  where id_asistencia = " + id_asistencia + ";";
+        ResultSet resultado = sentencia.executeQuery(sql);
+
+        while(resultado.next()){
+            String id_inscripcion = resultado.getString(1);
+            String fecha = resultado.getString(2);
+            System.out.println("Asistencia: " + id_inscripcion + " " + fecha);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+}
