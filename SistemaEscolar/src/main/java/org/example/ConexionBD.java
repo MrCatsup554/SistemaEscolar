@@ -69,17 +69,14 @@ public class ConexionBD {
             throw new RuntimeException(e);
         }
     }
-
-
-
-public void selectAsistencias(int id_asistencia){
-    try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+    public void selectAsistencias(int id_asistencia) {
+    try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
         Statement sentencia = con.createStatement();
         String sql =
                 "select id_inscripcion, fecha  from asistencias  where id_asistencia = " + id_asistencia + ";";
         ResultSet resultado = sentencia.executeQuery(sql);
 
-        while(resultado.next()){
+        while (resultado.next()) {
             String id_inscripcion = resultado.getString(1);
             String fecha = resultado.getString(2);
             System.out.println("Asistencia: " + id_inscripcion + " " + fecha);
@@ -88,4 +85,25 @@ public void selectAsistencias(int id_asistencia){
         throw new RuntimeException(e);
     }
 }
+
+    public void insertPersonas(String nombre, String apellido, char sexo, String fh_nac, int id_rol){
+
+        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            Statement sentencia = con.createStatement();
+
+            String sqlInsert =
+                    "insert into personas_escuela(nombre, apellido, sexo, fh_nac, id_rol) values(" +
+                    "'" + nombre + "'," +
+                    "'" + apellido + "'," +
+                    "'" + sexo + "'," +
+                    "'" + fh_nac + "'," +
+                    id_rol + ");";
+
+            int filasAfectadas = sentencia.executeUpdate(sqlInsert);
+            System.out.println("Se cambiaron " + filasAfectadas + " filas");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
