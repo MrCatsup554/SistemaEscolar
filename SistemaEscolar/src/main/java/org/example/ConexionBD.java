@@ -58,6 +58,7 @@ public class ConexionBD {
                     "select descripcion, semestre, creditos from materias where id_materia = " + id_materia + ";";
             ResultSet resultado = sentencia.executeQuery(sql);
 
+
             while(resultado.next()){
                 String descripcion = resultado.getString(1);
                 String semestre = resultado.getString(2);
