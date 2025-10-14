@@ -1,0 +1,24 @@
+Persona:	-- Moisés
+	nombre
+	apellido
+	sexo
+	fh_nac
+	id_rol:
+		1. Estudiante
+		2. Profesor
+		3. Directivo
+		4. Administrativo
+
+Materia:	-- Ulises
+	descripcion
+	semestre
+	creditos
+
+Inscripciones:	-- Alfredo
+	id_materia
+	id_estudiante
+	calificacion
+
+Asistencias:	-- Wilo
+	id_inscripcion
+	fecha
