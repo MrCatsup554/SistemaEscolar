@@ -63,7 +63,7 @@ public class ConexionBD {
                 String descripcion = resultado.getString(1);
                 String semestre = resultado.getString(2);
                 String creditos = resultado.getString(2);
-                System.out.println("meterias: " + descripcion + " " + semestre + " " + creditos);
+                System.out.println("Materias: " + descripcion + " " + semestre + " " + creditos);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -73,7 +73,7 @@ public class ConexionBD {
     try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
         Statement sentencia = con.createStatement();
         String sql =
-                "select id_inscripcion, fecha  from asistencias  where id_asistencia = " + id_asistencia + ";";
+                "select id_inscripcion, fecha  from asistencias  where id_asistencia= " + id_asistencia + ";";
         ResultSet resultado = sentencia.executeQuery(sql);
 
         while (resultado.next()) {
