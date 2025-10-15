@@ -106,4 +106,30 @@ public class ConexionBD {
             throw new RuntimeException(e);
         }
     }
+
+    public void selectInscripciones(int id_inscripcion) {
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            Statement sentencia = con.createStatement();
+            String sql = "SELECT * FROM inscripciones;";
+            ResultSet resultado = sentencia.executeQuery(sql);
+
+            System.out.println("----Tabla Inscripciones----");
+            while (resultado.next()) {
+                int id_inscripcionBD = resultado.getInt("id_inscripcion");
+                int id_materia = resultado.getInt("id_materia");
+                int id_estudiante = resultado.getInt("id_estudiante");
+                int calificacion = resultado.getInt("calificacion");
+
+                System.out.println(
+                        "ID: " + id_inscripcionBD +
+                        " | Materia: " +  id_materia +
+                        " | Estudiante: " + id_estudiante +
+                        " | Calificacion: " + calificacion
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
