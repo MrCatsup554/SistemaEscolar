@@ -5,11 +5,11 @@ import com.jcraft.jsch.JSchException;
 import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) throws JSchException, SQLException {
+    public static void main(String[] args) throws JSchException {
         ConexionBD bd = new ConexionBD();
         //Operaciones select
         bd.selectPersonas(990);
-        bd.selectAsistencias(50);
+        bd.selectAsistencias(121);
         bd.selectMateria(50);
         bd.selectInscripciones(50);
 

@@ -1,9 +1,9 @@
 Persona:	-- Moisés
-	nombre
-	apellido
-	sexo
-	fh_nac
-	id_rol:
+	nombre (TextField) textNombre
+	apellido (TextField) textApellido
+	sexo (Radio) radH, radM, radO
+	fh_nac (Fecha) dateNac
+	id_rol: (Selector) selecRol
 		1. Estudiante
 		2. Profesor
 		3. Directivo
