@@ -42,9 +42,6 @@ public class MateriaController implements Initializable {
     // Área de texto para resultados
     @FXML private TextArea textArMaterias;
 
-    /**
-     * Constructor: Inicializa la conexión a la BD.
-     */
     public MateriaController() {
         try {
             this.baseMaterias = new ConexionBD();
@@ -54,13 +51,8 @@ public class MateriaController implements Initializable {
         }
     }
 
-    /**
-     * Se llama después de que se cargan los elementos FXML.
-     * Carga las materias existentes al iniciar.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Cargar datos al iniciar la vista
         verMaterias(null);
     }
 

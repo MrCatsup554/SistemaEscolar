@@ -107,7 +107,8 @@ public class ConexionBD {
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
             String sql =
-                    "select id_materia, descripcion, semestre, creditos from materias order by id_materia;";
+                    "select id_materia, descripcion, semestre, creditos from materias " +
+                            "order by id_materia desc;";
             ResultSet resultado = sentencia.executeQuery(sql);
 
             while (resultado.next()) {
@@ -124,7 +125,6 @@ public class ConexionBD {
         }
         return sb.toString();
     }
-
     public void insertMateria(String descripcion, int semestre, int creditos) {
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             PreparedStatement sentencia = con.prepareStatement(
@@ -153,7 +153,8 @@ public class ConexionBD {
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
             String sql =
-                    "select id_asistencia, id_inscripcion, fecha from asistencias order by id_asistencia desc;";
+                    "select id_asistencia, id_inscripcion, fecha from asistencias " +
+                            "order by id_asistencia desc;";
             ResultSet resultado = sentencia.executeQuery(sql);
 
             while (resultado.next()) {
@@ -192,7 +193,8 @@ public class ConexionBD {
 
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
-            String sql = "SELECT id_inscripcion, id_materia, id_estudiante, calificacion FROM inscripciones order by id_inscripcion;";
+            String sql = "SELECT id_inscripcion, id_materia, id_estudiante, calificacion FROM inscripciones " +
+                    "order by id_inscripcion desc;";
             ResultSet resultado = sentencia.executeQuery(sql);
 
             while (resultado.next()) {
