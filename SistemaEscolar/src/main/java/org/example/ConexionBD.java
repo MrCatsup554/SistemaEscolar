@@ -14,7 +14,7 @@ public class ConexionBD {
     String dbPass = "FdI-its-5a";
     String conString;
 
-    public ConexionBD() throws JSchException{
+    public ConexionBD() throws JSchException {
         JSch jsch = new JSch();
 
         //ssh patito@fi.jcaguilar.dev
@@ -35,16 +35,15 @@ public class ConexionBD {
         System.out.println("Conexion exitosa a la base de datos");
     }
 
-    // --- PERSONAS (Sin cambios) ---
-    public String selectPersona(){
+    //PERSONAS
+    public String selectPersona() {
         StringBuilder sb = new StringBuilder();
-        // Agregamos una cabecera para la tabla
         sb.append(String.format("%-5s | %-15s | %-15s | %-8s | %-12s | %-15s\n",
                 "ID", "Nombre", "Apellido", "Sexo", "Fec. Nac.", "Rol"));
-        sb.append("-".repeat(75)); // Separador
+        sb.append("-".repeat(75));
         sb.append("\n");
-        
-        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
             String sql =
                     "select id_persona, nombre, apellido," +
@@ -61,7 +60,7 @@ public class ConexionBD {
                             "order by id_persona desc;";
             ResultSet resultado = sentencia.executeQuery(sql);
 
-            while(resultado.next()){
+            while (resultado.next()) {
                 String id_persona = resultado.getString(1);
                 String nombre = resultado.getString(2);
                 String apellido = resultado.getString(3);
@@ -77,10 +76,9 @@ public class ConexionBD {
         }
         return sb.toString();
     }
-    
-    public void insertPersonas(String nombre, String apellido, char sexo, String fh_nac, int id_rol){
+    public void insertPersonas(String nombre, String apellido, char sexo, String fh_nac, int id_rol) {
 
-        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             PreparedStatement sentencia = con.prepareStatement(
                     "insert into personas_escuela(nombre, apellido, sexo, fh_nac, id_rol) values" +
                             "(?, ?, ?, ?, ?);"
@@ -99,20 +97,20 @@ public class ConexionBD {
         }
     }
 
-    // --- MATERIAS (Modificado y Nuevo) ---
-    public String selectMateria(){
+    //MATERIAS
+    public String selectMateria() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-5s | %-30s | %-10s | %-10s\n", "ID", "Descripción", "Semestre", "Créditos"));
         sb.append("-".repeat(65));
         sb.append("\n");
 
-        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
             String sql =
                     "select id_materia, descripcion, semestre, creditos from materias order by id_materia;";
             ResultSet resultado = sentencia.executeQuery(sql);
 
-            while(resultado.next()){
+            while (resultado.next()) {
                 int id_materia = resultado.getInt("id_materia");
                 String descripcion = resultado.getString("descripcion");
                 int semestre = resultado.getInt("semestre");
@@ -126,11 +124,12 @@ public class ConexionBD {
         }
         return sb.toString();
     }
-    
+
     public void insertMateria(String descripcion, int semestre, int creditos) {
-        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             PreparedStatement sentencia = con.prepareStatement(
-                    "insert into materias(descripcion, semestre, creditos) values (?, ?, ?);"
+                    "insert into materias(descripcion, semestre, creditos) values " +
+                            "(?, ?, ?);"
             );
             sentencia.setString(1, descripcion);
             sentencia.setInt(2, semestre);
@@ -144,7 +143,7 @@ public class ConexionBD {
         }
     }
 
-    // --- ASISTENCIAS (Modificado y Nuevo) ---
+    //ASISTENCIAS
     public String selectAsistencias() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-12s | %-15s | %-15s\n", "ID Asistencia", "ID Inscripción", "Fecha"));
@@ -168,14 +167,13 @@ public class ConexionBD {
         }
         return sb.toString();
     }
-
     public void insertAsistencia(int id_inscripcion, String fecha) {
-        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             PreparedStatement sentencia = con.prepareStatement(
                     "insert into asistencias(id_inscripcion, fecha) values (?, ?);"
             );
             sentencia.setInt(1, id_inscripcion);
-            sentencia.setString(2, fecha); // Asume que la fecha es un String YYYY-MM-DD
+            sentencia.setString(2, fecha);
 
             int resultado = sentencia.executeUpdate();
             System.out.println("Filas afectadas (Asistencias): " + resultado);
@@ -184,8 +182,8 @@ public class ConexionBD {
             throw new RuntimeException(e);
         }
     }
-    
-    // --- INSCRIPCIONES (Modificado y Nuevo) ---
+
+    //INSCRIPCIONES
     public String selectInscripciones() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-15s | %-10s | %-12s | %-12s\n", "ID Inscripción", "ID Materia", "ID Estudiante", "Calificación"));
@@ -211,11 +209,11 @@ public class ConexionBD {
         }
         return sb.toString();
     }
-    
     public void insertInscripcion(int id_materia, int id_estudiante, int calificacion) {
         try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             PreparedStatement sentencia = con.prepareStatement(
-                    "insert into inscripciones(id_materia, id_estudiante, calificacion) values (?, ?, ?);"
+                    "insert into inscripciones(id_materia, id_estudiante, calificacion) " +
+                            "values (?, ?, ?);"
             );
             sentencia.setInt(1, id_materia);
             sentencia.setInt(2, id_estudiante);

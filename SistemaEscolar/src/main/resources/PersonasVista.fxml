@@ -22,15 +22,15 @@
             <cursor><Cursor fx:constant="HAND" /></cursor>
         </Button>
         
-        <Button fx:id="btnPersonas" text="personas" style="-fx-background-color: #4e7efc; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+        <Button fx:id="btnPersonas" text="Personas" style="-fx-background-color: #4e7efc; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
         
         <Button fx:id="btnAsistencia" text="Asistencia" onAction="#irAAsistencia" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
             <cursor><Cursor fx:constant="HAND" /></cursor>
         </Button>
-        <Button fx:id="btnMateria" text="materia" onAction="#irAMateria" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
+        <Button fx:id="btnMateria" text="Materias" onAction="#irAMateria" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
             <cursor><Cursor fx:constant="HAND" /></cursor>
         </Button>
-        <Button fx:id="btnInscripciones" text="inscripciones" onAction="#irAInscripciones" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
+        <Button fx:id="btnInscripciones" text="Inscripciones" onAction="#irAInscripciones" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
             <cursor><Cursor fx:constant="HAND" /></cursor>
         </Button>
     </children>
