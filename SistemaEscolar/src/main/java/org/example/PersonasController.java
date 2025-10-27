@@ -5,10 +5,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import javax.swing.*;
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -49,6 +54,49 @@ public class PersonasController implements Initializable {
 
     @FXML
     private TextField textNombre;
+    
+    @FXML private Button btnInicio;
+    @FXML private Button btnPersonas;
+    @FXML private Button btnAsistencia;
+    @FXML private Button btnMateria;
+    @FXML private Button btnInscripciones;
+
+    @FXML
+    void irAInicio(ActionEvent event) throws IOException {
+        cambiarVista(event, "InicioVista.fxml");
+    }
+
+    @FXML
+    void irAPersonas(ActionEvent event) throws IOException {
+        // Opcional: No hacer nada o recargar la vista si lo deseas
+        System.out.println("Ya estás en Personas.");
+        // cambiarVista(event, "PersonasVista.fxml"); // Descomenta si quieres recargar
+    }
+
+    @FXML
+    void irAAsistencia(ActionEvent event) throws IOException {
+        cambiarVista(event, "AsistenciasVista.fxml");
+    }
+
+    @FXML
+    void irAMateria(ActionEvent event) throws IOException {
+        cambiarVista(event, "MateriasVista.fxml");
+    }
+
+    @FXML
+    void irAInscripciones(ActionEvent event) throws IOException {
+        cambiarVista(event, "InscripcionesVista.fxml");
+    }
+
+    private void cambiarVista(ActionEvent event, String fxmlFileName) throws IOException {
+        String fxmlPath = "/" + fxmlFileName;
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+        if (root == null) {
+            throw new IOException("No se pudo encontrar el archivo FXML en: " + fxmlPath);
+        }
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    }
 
     public PersonasController() throws JSchException {
     }

@@ -35,8 +35,15 @@ public class ConexionBD {
         System.out.println("Conexion exitosa a la base de datos");
     }
 
+    // --- PERSONAS (Sin cambios) ---
     public String selectPersona(){
         StringBuilder sb = new StringBuilder();
+        // Agregamos una cabecera para la tabla
+        sb.append(String.format("%-5s | %-15s | %-15s | %-8s | %-12s | %-15s\n",
+                "ID", "Nombre", "Apellido", "Sexo", "Fec. Nac.", "Rol"));
+        sb.append("-".repeat(75)); // Separador
+        sb.append("\n");
+        
         try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
             String sql =
@@ -64,73 +71,13 @@ public class ConexionBD {
 
                 sb.append(String.format("%-5s | %-15s | %-15s | %-8s | %-12s | %-15s\n",
                         id_persona, nombre, apellido, sexo, fh_nac, rol));
-
-                //System.out.println(sb.toString());
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return sb.toString();
     }
-    public void selectMateria(int id_materia){
-        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
-            Statement sentencia = con.createStatement();
-            String sql =
-                    "select descripcion, semestre, creditos from materias where id_materia = " + id_materia + ";";
-            ResultSet resultado = sentencia.executeQuery(sql);
-
-
-            while(resultado.next()){
-                String descripcion = resultado.getString(1);
-                String semestre = resultado.getString(2);
-                String creditos = resultado.getString(2);
-                System.out.println("Materias: " + descripcion + " " + semestre + " " + creditos);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void selectAsistencias(int id_asistencia) {
-        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
-            Statement sentencia = con.createStatement();
-            String sql =
-                    "select id_inscripcion, fecha  from asistencias  where id_asistencia= " + id_asistencia + ";";
-            ResultSet resultado = sentencia.executeQuery(sql);
-
-            while (resultado.next()) {
-                String id_inscripcion = resultado.getString(1);
-                String fecha = resultado.getString(2);
-                System.out.println("Asistencia: " + id_inscripcion + " " + fecha);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void selectInscripciones(int id_inscripcion) {
-        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
-            Statement sentencia = con.createStatement();
-            String sql = "SELECT * FROM inscripciones;";
-            ResultSet resultado = sentencia.executeQuery(sql);
-
-            System.out.println("----Tabla Inscripciones----");
-            while (resultado.next()) {
-                int id_inscripcionBD = resultado.getInt("id_inscripcion");
-                int id_materia = resultado.getInt("id_materia");
-                int id_estudiante = resultado.getInt("id_estudiante");
-                int calificacion = resultado.getInt("calificacion");
-
-                System.out.println(
-                        "ID: " + id_inscripcionBD +
-                                " | Materia: " +  id_materia +
-                                " | Estudiante: " + id_estudiante +
-                                " | Calificacion: " + calificacion
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    
     public void insertPersonas(String nombre, String apellido, char sexo, String fh_nac, int id_rol){
 
         try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
@@ -145,10 +92,140 @@ public class ConexionBD {
             sentencia.setInt(5, id_rol);
 
             int resultado = sentencia.executeUpdate();
+            System.out.println("Filas afectadas (Personas): " + resultado);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+    // --- MATERIAS (Modificado y Nuevo) ---
+    public String selectMateria(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-5s | %-30s | %-10s | %-10s\n", "ID", "Descripción", "Semestre", "Créditos"));
+        sb.append("-".repeat(65));
+        sb.append("\n");
+
+        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            Statement sentencia = con.createStatement();
+            String sql =
+                    "select id_materia, descripcion, semestre, creditos from materias order by id_materia;";
+            ResultSet resultado = sentencia.executeQuery(sql);
+
+            while(resultado.next()){
+                int id_materia = resultado.getInt("id_materia");
+                String descripcion = resultado.getString("descripcion");
+                int semestre = resultado.getInt("semestre");
+                int creditos = resultado.getInt("creditos");
+
+                sb.append(String.format("%-5d | %-30s | %-10d | %-10d\n",
+                        id_materia, descripcion, semestre, creditos));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sb.toString();
+    }
+    
+    public void insertMateria(String descripcion, int semestre, int creditos) {
+        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            PreparedStatement sentencia = con.prepareStatement(
+                    "insert into materias(descripcion, semestre, creditos) values (?, ?, ?);"
+            );
+            sentencia.setString(1, descripcion);
+            sentencia.setInt(2, semestre);
+            sentencia.setInt(3, creditos);
+
+            int resultado = sentencia.executeUpdate();
+            System.out.println("Filas afectadas (Materias): " + resultado);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // --- ASISTENCIAS (Modificado y Nuevo) ---
+    public String selectAsistencias() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-12s | %-15s | %-15s\n", "ID Asistencia", "ID Inscripción", "Fecha"));
+        sb.append("-".repeat(47));
+        sb.append("\n");
+
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            Statement sentencia = con.createStatement();
+            String sql =
+                    "select id_asistencia, id_inscripcion, fecha from asistencias order by id_asistencia desc;";
+            ResultSet resultado = sentencia.executeQuery(sql);
+
+            while (resultado.next()) {
+                int id_asistencia = resultado.getInt("id_asistencia");
+                int id_inscripcion = resultado.getInt("id_inscripcion");
+                String fecha = resultado.getString("fecha");
+                sb.append(String.format("%-12d | %-15d | %-15s\n", id_asistencia, id_inscripcion, fecha));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sb.toString();
+    }
+
+    public void insertAsistencia(int id_inscripcion, String fecha) {
+        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            PreparedStatement sentencia = con.prepareStatement(
+                    "insert into asistencias(id_inscripcion, fecha) values (?, ?);"
+            );
+            sentencia.setInt(1, id_inscripcion);
+            sentencia.setString(2, fecha); // Asume que la fecha es un String YYYY-MM-DD
+
+            int resultado = sentencia.executeUpdate();
+            System.out.println("Filas afectadas (Asistencias): " + resultado);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    // --- INSCRIPCIONES (Modificado y Nuevo) ---
+    public String selectInscripciones() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-15s | %-10s | %-12s | %-12s\n", "ID Inscripción", "ID Materia", "ID Estudiante", "Calificación"));
+        sb.append("-".repeat(57));
+        sb.append("\n");
+
+        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            Statement sentencia = con.createStatement();
+            String sql = "SELECT id_inscripcion, id_materia, id_estudiante, calificacion FROM inscripciones order by id_inscripcion;";
+            ResultSet resultado = sentencia.executeQuery(sql);
+
+            while (resultado.next()) {
+                int id_inscripcionBD = resultado.getInt("id_inscripcion");
+                int id_materia = resultado.getInt("id_materia");
+                int id_estudiante = resultado.getInt("id_estudiante");
+                int calificacion = resultado.getInt("calificacion");
+
+                sb.append(String.format("%-15d | %-10d | %-12d | %-12d\n",
+                        id_inscripcionBD, id_materia, id_estudiante, calificacion));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sb.toString();
+    }
+    
+    public void insertInscripcion(int id_materia, int id_estudiante, int calificacion) {
+        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            PreparedStatement sentencia = con.prepareStatement(
+                    "insert into inscripciones(id_materia, id_estudiante, calificacion) values (?, ?, ?);"
+            );
+            sentencia.setInt(1, id_materia);
+            sentencia.setInt(2, id_estudiante);
+            sentencia.setInt(3, calificacion);
+
+            int resultado = sentencia.executeUpdate();
+            System.out.println("Filas afectadas (Inscripciones): " + resultado);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

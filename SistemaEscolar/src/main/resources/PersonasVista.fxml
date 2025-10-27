@@ -7,7 +7,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Separator?> <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
@@ -15,6 +15,27 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" minWidth="655.0" spacing="30.0" style="-fx-padding: 30; -fx-background-color: #f4f6fa; -fx-border-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PersonasController">
+
+   <HBox alignment="CENTER_LEFT" spacing="10.0">
+    <children>
+        <Button fx:id="btnInicio" text="Inicio" onAction="#irAInicio" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
+            <cursor><Cursor fx:constant="HAND" /></cursor>
+        </Button>
+        
+        <Button fx:id="btnPersonas" text="personas" style="-fx-background-color: #4e7efc; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" />
+        
+        <Button fx:id="btnAsistencia" text="Asistencia" onAction="#irAAsistencia" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
+            <cursor><Cursor fx:constant="HAND" /></cursor>
+        </Button>
+        <Button fx:id="btnMateria" text="materia" onAction="#irAMateria" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
+            <cursor><Cursor fx:constant="HAND" /></cursor>
+        </Button>
+        <Button fx:id="btnInscripciones" text="inscripciones" onAction="#irAInscripciones" style="-fx-background-color: #e0e0e0; -fx-font-weight: bold; -fx-background-radius: 5;">
+            <cursor><Cursor fx:constant="HAND" /></cursor>
+        </Button>
+    </children>
+</HBox>
+    <Separator prefWidth="200.0" />
 
     <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2a3a5c;" text="PERSONAS" />
 

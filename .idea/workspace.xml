@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ad0ac280-742d-4dc3-a98d-251b7b2f51a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/SistemaEscolar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SistemaEscolar/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SistemaEscolar/src/main/java/org/example/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/SistemaEscolar/src/main/java/org/example/ConexionBD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SistemaEscolar/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/SistemaEscolar/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SistemaEscolar/src/main/resources/PersonasVista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/SistemaEscolar/src/main/resources/PersonasVista.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SistemaEscolar/target/classes/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/SistemaEscolar/target/classes/org/example/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,16 +37,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/moise/Desktop/SisEsc/SistemaEscolar&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.Unnamed.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/wil/Desktop/repos/SistemaEscolar",
+    "settings.editor.selected.configurable": "configurable.group.tools"
   }
-}</component>
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ad0ac280-742d-4dc3-a98d-251b7b2f51a3" name="Changes" comment="" />
