@@ -72,14 +72,13 @@ public class ConexionBD {
         }
         return sb.toString();
     }
-
     public String selectMateria(){
         StringBuilder sb = new StringBuilder();
         try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
             String sql =
                     "select id_materia, descripcion, semestre, creditos from materias " +
-                            "order by id_materia;";
+                            "order by id_materia desc;";
             ResultSet resultado = sentencia.executeQuery(sql);
 
 
@@ -91,6 +90,30 @@ public class ConexionBD {
 
                 sb.append(String.format("%-5s | %-30s | %-5s | %-5s\n",
                         id_materia, descripcion, semestre, creditos));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sb.toString();
+    }
+    public String selectInscripciones() {
+        StringBuilder sb = new StringBuilder();
+        try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
+            Statement sentencia = con.createStatement();
+            String sql =
+                    "select id_inscripcion, id_materia, id_estudiante, calificacion from inscripciones " +
+                            "order by id_inscripcion desc;";
+            ResultSet resultado = sentencia.executeQuery(sql);
+
+
+            while(resultado.next()){
+                String id_inscripcion = resultado.getString(1);
+                String id_materia = resultado.getString(2);
+                String id_estudiante = resultado.getString(3);
+                String calificacion = resultado.getString(4);
+
+                sb.append(String.format("%-5s | %-5s | %-5s | %-5s\n",
+                        id_inscripcion, id_materia, id_estudiante, calificacion));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -109,30 +132,6 @@ public class ConexionBD {
                 String id_inscripcion = resultado.getString(1);
                 String fecha = resultado.getString(2);
                 System.out.println("Asistencia: " + id_inscripcion + " " + fecha);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void selectInscripciones(int id_inscripcion) {
-        try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
-            Statement sentencia = con.createStatement();
-            String sql = "SELECT * FROM inscripciones;";
-            ResultSet resultado = sentencia.executeQuery(sql);
-
-            System.out.println("----Tabla Inscripciones----");
-            while (resultado.next()) {
-                int id_inscripcionBD = resultado.getInt("id_inscripcion");
-                int id_materia = resultado.getInt("id_materia");
-                int id_estudiante = resultado.getInt("id_estudiante");
-                int calificacion = resultado.getInt("calificacion");
-
-                System.out.println(
-                        "ID: " + id_inscripcionBD +
-                                " | Materia: " +  id_materia +
-                                " | Estudiante: " + id_estudiante +
-                                " | Calificacion: " + calificacion
-                );
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

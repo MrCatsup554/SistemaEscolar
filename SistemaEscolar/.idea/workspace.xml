@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Actualizada funcion insertPersonas">
+    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761589995616</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad">
+      <option name="closed" value="true" />
+      <created>1761595302662</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1761595302662</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,6 +227,7 @@
     <MESSAGE value="Lista de cambios:&#10;- Cambios en general" />
     <MESSAGE value="Lista de cambios:&#10;- Terminada interfaz para agregar personas en la base de datos" />
     <MESSAGE value="Lista de cambios:&#10;- Actualizada funcion insertPersonas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Actualizada funcion insertPersonas" />
+    <MESSAGE value="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad" />
   </component>
 </project>
