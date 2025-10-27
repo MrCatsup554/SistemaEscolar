@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Cambios menores">
+    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Añadido fxml Personas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Estructura bd.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Estructura bd.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/PersonasVista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PersonasVista.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +52,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainPrueba.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -63,6 +67,40 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\moise\Desktop\SisEsc\SistemaEscolar\SistemaEscolar\src\main\resources" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="SistemaEscolar" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainPrueba" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.MainPrueba" />
+      <module name="SistemaEscolar" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainPrueba" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -120,7 +158,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760467915718</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Lista de cambios:&#10;- Añadido fxml Personas&#10;- Añadido controlador de clases de Personas">
+      <option name="closed" value="true" />
+      <created>1761019041392</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1761019041392</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Lista de cambios:&#10;- Añadido fxml Personas">
+      <option name="closed" value="true" />
+      <created>1761019073073</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1761019073073</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -130,6 +184,8 @@
     <MESSAGE value="a" />
     <MESSAGE value="Añadida carpeta de recursos" />
     <MESSAGE value="Cambios menores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios menores" />
+    <MESSAGE value="Lista de cambios:&#10;- Añadido fxml Personas&#10;- Añadido controlador de clases de Personas" />
+    <MESSAGE value="Lista de cambios:&#10;- Añadido fxml Personas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Añadido fxml Personas" />
   </component>
 </project>
