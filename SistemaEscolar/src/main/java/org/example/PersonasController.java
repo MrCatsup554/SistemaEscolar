@@ -55,7 +55,7 @@ public class PersonasController implements Initializable {
 
     @FXML
     void verPersonas(ActionEvent event) {
-        String tablaPersonas = basePersonas.selectPersona();
+        String tablaPersonas = basePersonas.selectMateria();
         textArPersonas.setText("");
         textArPersonas.setText(tablaPersonas);
     }
