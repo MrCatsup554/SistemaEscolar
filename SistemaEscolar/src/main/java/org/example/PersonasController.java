@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -59,27 +60,57 @@ public class PersonasController implements Initializable {
         textArPersonas.setText(tablaPersonas);
     }
 
-    String nombre = textNombre.getText();
-    String apellido = textApellido.getText();
-    char sexoSel = getSexoSel().charAt(0);
-    String fh_nac = getFechaNac();
-    int rol = getRolSel();
-
     @FXML
     void registrarPersona(ActionEvent event) {
+        String nombre = textNombre.getText();
+        String apellido = textApellido.getText();
+        char sexoSel = getSexoSel().charAt(0);
+        String fh_nac = getFechaNac();
+        int rol = getRolSel();
 
         //Ingresar personas en la base de datos
+        if(textNombre.getText().isBlank() || textApellido.getText().isBlank()){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Ingresa nombres y apellidos válidos.",
+                    "Error de Nombres y Apellidos",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        if (fh_nac == null) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Debe seleccionar una Fecha de Nacimiento.",
+                    "Error de fecha",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (rol == 0){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Debe seleccionar un rol.",
+                    "Error de rol",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
             System.out.println(nombre + " " + apellido + " " + sexoSel + " " + fh_nac + " " + rol);
-            //basePersonas.insertPersonas(nombre, apellido, sexoSel, fh_nac, rol);
+            basePersonas.insertPersonas(nombre, apellido, sexoSel, fh_nac, rol);
 
-        //Mostrar personas actualizada en la tabla
-        textArPersonas.setText("");
-        String tablaPersonas = basePersonas.selectPersona();
-        textArPersonas.setText("");
-        textArPersonas.setText(tablaPersonas);
+            //Borro los datos preparando para ingresar nuevos
+            borrarDatos();
 
-        //Borro los datos preparando para ingresar nuevos
-        borrarDatos();
+            nombre = null;
+            apellido = null;
+            sexoSel = ' ';
+            fh_nac = null;
+            rol = 0;
+
+            //Mostrar personas actualizada en la tabla
+            textArPersonas.setText("");
+            String tablaPersonas = basePersonas.selectPersona();
+            textArPersonas.setText("");
+            textArPersonas.setText(tablaPersonas);
+        }
     }
 
     private int getRolSel(){
@@ -105,6 +136,11 @@ public class PersonasController implements Initializable {
 
             return selectedRadioButton.getId();
         } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Seleccione un sexo.",
+                    "Error de Sexo",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
@@ -115,7 +151,6 @@ public class PersonasController implements Initializable {
             String fechaGuardar = fechaNacimiento.toString();
             return fechaGuardar;
         } else {
-            System.out.println("⚠️ Advertencia: No se ha seleccionado una fecha.");
             return null;
         }
     }
@@ -124,17 +159,11 @@ public class PersonasController implements Initializable {
         textNombre.setText("");
         textApellido.setText("");
         dateNac.setValue(null);
-        selecRol.getSelectionModel().clearSelection();
+        selecRol.getSelectionModel().selectFirst();
         Toggle toggleSeleccionado = sexo.getSelectedToggle();
         if (toggleSeleccionado != null) {
             toggleSeleccionado.setSelected(false);
         }
-
-        nombre = null;
-        apellido = null;
-        sexoSel = ' ';
-        fh_nac = null;
-        rol = 0;
     }
 
     @Override
@@ -142,7 +171,7 @@ public class PersonasController implements Initializable {
         // Crea una lista observable con las opciones
         selecRol.getSelectionModel().clearSelection();
         ObservableList<String> roles = FXCollections.observableArrayList(
-                "-- Selecciona un rol --",
+                "-- Seleccionar rol --",
                 "Estudiante",
                 "Profesor",
                 "Directivo",

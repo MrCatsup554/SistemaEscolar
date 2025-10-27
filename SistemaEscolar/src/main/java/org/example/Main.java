@@ -1,20 +1,33 @@
 package org.example;
 
 import com.jcraft.jsch.JSchException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
-public class Main {
-    public static void main(String[] args) throws JSchException {
-        ConexionBD bd = new ConexionBD();
-        //Operaciones select
-        bd.selectPersonas(990);
-        bd.selectAsistencias(121);
-        bd.selectMateria(50);
-        bd.selectInscripciones(50);
+import static javafx.application.Application.*;
 
-        //Operaciones insert
-        //bd.insertPersonas("Alfredo", "Cruz", 'h', "2025-10-14", 1);
+public class Main extends Application {
+
+    public void start(Stage escenario){
+        try{
+            Parent raiz = FXMLLoader.load(getClass().getResource("/PersonasVista.fxml"));
+            Scene escena = new Scene(raiz);
+            escenario.setScene(escena);
+            escenario.show();
+        } catch (IOException e){
+            System.err.println("Error al cargar la vista FXML: " + e.getMessage());
+        }
+
+    }
+
+    public static void main(String[] args) throws JSchException {
+        launch(args);
     }
 
 }
