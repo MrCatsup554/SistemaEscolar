@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Cambios en general">
+    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Terminada interfaz para agregar personas en la base de datos">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761544406233</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Lista de cambios:&#10;- Terminada interfaz para agregar personas en la base de datos">
+      <option name="closed" value="true" />
+      <created>1761588661107</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1761588661107</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -204,6 +212,7 @@
     <MESSAGE value="Lista de cambios:&#10;- Añadido fxml Personas&#10;- Añadido controlador de clases de Personas" />
     <MESSAGE value="Lista de cambios:&#10;- Añadido fxml Personas" />
     <MESSAGE value="Lista de cambios:&#10;- Cambios en general" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Cambios en general" />
+    <MESSAGE value="Lista de cambios:&#10;- Terminada interfaz para agregar personas en la base de datos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Terminada interfaz para agregar personas en la base de datos" />
   </component>
 </project>

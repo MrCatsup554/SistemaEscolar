@@ -72,7 +72,6 @@ public class ConexionBD {
         }
         return sb.toString();
     }
-
     public void selectMateria(int id_materia){
         try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
@@ -135,18 +134,17 @@ public class ConexionBD {
     public void insertPersonas(String nombre, String apellido, char sexo, String fh_nac, int id_rol){
 
         try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
-            Statement sentencia = con.createStatement();
+            PreparedStatement sentencia = con.prepareStatement(
+                    "insert into personas_escuela(nombre, apellido, sexo, fh_nac, id_rol) values" +
+                            "(?, ?, ?, ?, ?);"
+            );
+            sentencia.setString(1, nombre);
+            sentencia.setString(2, apellido);
+            sentencia.setString(3, String.valueOf(sexo));
+            sentencia.setString(4, fh_nac);
+            sentencia.setInt(5, id_rol);
 
-            String sqlInsert =
-                    "insert into personas_escuela(nombre, apellido, sexo, fh_nac, id_rol) values(" +
-                    "'" + nombre + "'," +
-                    "'" + apellido + "'," +
-                    "'" + sexo + "'," +
-                    "'" + fh_nac + "'," +
-                    id_rol + ");";
-
-            int filasAfectadas = sentencia.executeUpdate(sqlInsert);
-            System.out.println("Se cambiaron " + filasAfectadas + " filas");
+            int resultado = sentencia.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
