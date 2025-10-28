@@ -5,9 +5,8 @@ module SistemaEscolar {
     requires java.sql;
     requires javafx.graphics;
     requires java.desktop;
-    requires javafx.base; // Asegúrate de que este 'requires' esté presente (lo estaba implícitamente, pero es buena práctica)
+    requires javafx.base;
 
-    // LA LÍNEA CLAVE: Añadir javafx.base al permiso 'opens'
     opens org.example to javafx.fxml, javafx.graphics, javafx.base;
 
     exports org.example;

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" minHeight="690.0" minWidth="655.0" spacing="20.0" style="-fx-padding: 30; -fx-background-color: #f4f6fa; -fx-border-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.AsistenciaController">
+<VBox alignment="CENTER" minHeight="690.0" minWidth="655.0" spacing="20.0" style="-fx-padding: 30; -fx-background-color: #f4f6fa; -fx-border-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21.0.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.AsistenciaController">
 
     <HBox alignment="CENTER_LEFT" spacing="10.0">
         <children>

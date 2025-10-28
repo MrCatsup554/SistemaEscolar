@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Cambios en general">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Asistencias.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Inscripciones.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Materias.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Personas.java" afterDir="false" />
+    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Añadida logica para crear las tablas de cada apartado siguiendo la logica MVC.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/AsistenciaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/AsistenciaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/InscripcionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/InscripcionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MateriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MateriaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/AsistenciasVista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AsistenciasVista.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/InscripcionesVista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/InscripcionesVista.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MateriasVista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MateriasVista.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/PersonasVista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PersonasVista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/InicioVista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/InicioVista.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761625151150</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Lista de cambios:&#10;- Añadida logica para crear las tablas de cada apartado siguiendo la logica MVC.">
+      <option name="closed" value="true" />
+      <created>1761630731461</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1761630731461</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,6 +253,7 @@
     <MESSAGE value="Lista de cambios:&#10;- Añadido fxml Personas" />
     <MESSAGE value="Lista de cambios:&#10;- Terminada interfaz para agregar personas en la base de datos" />
     <MESSAGE value="Lista de cambios:&#10;- Cambios en general" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Cambios en general" />
+    <MESSAGE value="Lista de cambios:&#10;- Añadida logica para crear las tablas de cada apartado siguiendo la logica MVC." />
+    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Añadida logica para crear las tablas de cada apartado siguiendo la logica MVC." />
   </component>
 </project>

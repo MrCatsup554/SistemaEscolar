@@ -15,9 +15,7 @@ public class Main extends Application {
 
     public void start(Stage stage) throws IOException {
         
-        
         Parent root = FXMLLoader.load(getClass().getResource("/InicioVista.fxml"));
-        
        
         Scene scene = new Scene(root, 700, 600); 
         
