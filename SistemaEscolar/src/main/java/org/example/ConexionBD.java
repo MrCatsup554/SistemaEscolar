@@ -126,6 +126,7 @@ public class ConexionBD {
         return listaMaterias;
     }
     public void insertMateria(String descripcion, int semestre, int creditos) {
+
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             PreparedStatement sentencia = con.prepareStatement(
                     "insert into materias(descripcion, semestre, creditos) values " +
@@ -141,7 +142,6 @@ public class ConexionBD {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return sb.toString();
     }
 
     //ASISTENCIAS
@@ -186,7 +186,6 @@ public class ConexionBD {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return sb.toString();
     }
 
     //INSCRIPCIONES
