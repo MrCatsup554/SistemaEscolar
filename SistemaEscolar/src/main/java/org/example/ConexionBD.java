@@ -141,6 +141,7 @@ public class ConexionBD {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return sb.toString();
     }
 
     //ASISTENCIAS
@@ -185,6 +186,7 @@ public class ConexionBD {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return sb.toString();
     }
 
     //INSCRIPCIONES
