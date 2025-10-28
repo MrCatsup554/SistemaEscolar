@@ -48,12 +48,7 @@ public class MateriaController implements Initializable {
     private TableView<Materias> tblMaterias;
 
     public MateriaController() {
-        try {
-            this.baseMaterias = new ConexionBD();
-        } catch (JSchException e) {
-            mostrarError("Error de Conexión", "No se pudo conectar a la base de datos: " + e.getMessage());
-            e.printStackTrace();
-        }
+        this.baseMaterias = new ConexionBD();
     }
 
     @Override

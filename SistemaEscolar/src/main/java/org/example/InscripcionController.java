@@ -44,12 +44,7 @@ public class InscripcionController implements Initializable {
     private TableView<Inscripciones> tblInsc;
 
     public InscripcionController() {
-        try {
-            this.baseInscripciones = new ConexionBD();
-        } catch (JSchException e) {
-            mostrarError("Error de Conexión", "No se pudo conectar a la base de datos: " + e.getMessage());
-            e.printStackTrace();
-        }
+        this.baseInscripciones = new ConexionBD();
     }
 
     private void cargarTablaInscripciones() {

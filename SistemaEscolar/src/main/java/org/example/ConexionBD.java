@@ -5,6 +5,7 @@ import com.jcraft.jsch.Session;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class ConexionBD {
@@ -16,25 +17,30 @@ public class ConexionBD {
     String dbPass = "FdI-its-5a";
     String conString;
 
-    public ConexionBD() throws JSchException {
+    public ConexionBD() { // 1. Quitar 'throws JSchException' ya que la manejaremos internamente
         JSch jsch = new JSch();
 
-        //ssh patito@fi.jcaguilar.dev
-        Session sesion = jsch.getSession(sshUser, hostname);
+        try {
+            Session sesion = jsch.getSession(sshUser, hostname);
 
-        //Introducir contraseña
-        sesion.setPassword(sshPass);
+            sesion.setPassword(sshPass);
 
-        //Deshabilita los mensajes de error
-        sesion.setConfig("StrictHostKeyChecking", "no");
+            sesion.setConfig("StrictHostKeyChecking", "no");
 
-        //Obtenemos un puerto redireccionando
-        sesion.connect();
-        int port = sesion.setPortForwardingL(0, "localhost", 3306);
+            sesion.connect();
 
-        conString = "jdbc:mariadb://localhost:" + port + "/its5a";
+            int port = sesion.setPortForwardingL(0, "localhost", 3306);
+            conString = "jdbc:mariadb://localhost:" + port + "/its5a";
+
+        } catch (JSchException e) {
+            System.err.println("Detalle: " + e.getMessage());
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se pudo conectar a la base de datos.\n" + "Detalle: " + e.getMessage(),
+                    "Error de conexion",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
-
     //PERSONAS
     public ObservableList<Personas> selectPersonas() {
         ObservableList<Personas> listaPersonas = FXCollections.observableArrayList();

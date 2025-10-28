@@ -56,7 +56,7 @@ public class AsistenciaController implements Initializable {
     public AsistenciaController() {
         try {
             this.baseAsistencias = new ConexionBD();
-        } catch (JSchException e) {
+        } catch (Exception e) {
             mostrarError("Error de Conexión", "No se pudo conectar a la base de datos: " + e.getMessage());
             e.printStackTrace();
         }
