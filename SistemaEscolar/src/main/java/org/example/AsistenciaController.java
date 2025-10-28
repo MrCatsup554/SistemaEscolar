@@ -61,11 +61,7 @@ public class AsistenciaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Cargar datos al iniciar la vista
-        verAsistencias(null);
-        
-        // Opcional: Poner la fecha de hoy por defecto
-        // dateAsistencia.setValue(LocalDate.now());
+
     }
 
     // --- Métodos de Navegación ---

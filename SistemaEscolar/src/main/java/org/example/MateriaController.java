@@ -53,7 +53,6 @@ public class MateriaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        verMaterias(null);
     }
 
     // --- Métodos de Navegación ---
@@ -92,8 +91,6 @@ public class MateriaController implements Initializable {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.getScene().setRoot(root);
     }
-
-    // --- Métodos de Acción (onAction) ---
 
     @FXML
     void verMaterias(ActionEvent event) {

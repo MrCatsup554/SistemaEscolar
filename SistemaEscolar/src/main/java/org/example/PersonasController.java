@@ -216,8 +216,6 @@ public class PersonasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Crea una lista observable con las opciones
-        verPersonas(null);
         selecRol.getSelectionModel().clearSelection();
         ObservableList<String> roles = FXCollections.observableArrayList(
                 "-- Seleccionar rol --",
@@ -227,8 +225,6 @@ public class PersonasController implements Initializable {
                 "Administrativo"
         );
         selecRol.setItems(roles);
-
-        // Opcional: Seleccionar una opción por defecto
         selecRol.getSelectionModel().selectFirst();
     }
 }

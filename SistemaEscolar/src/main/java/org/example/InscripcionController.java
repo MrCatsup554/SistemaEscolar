@@ -47,8 +47,7 @@ public class InscripcionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Cargar datos al iniciar la vista
-        verInscripciones(null);
+
     }
 
     // --- Métodos de Acción (onAction) ---
