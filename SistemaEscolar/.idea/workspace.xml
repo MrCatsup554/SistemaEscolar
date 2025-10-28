@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad">
+    <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Cambios en general">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/AsistenciaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/AsistenciaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/InicioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/InicioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/InscripcionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/InscripcionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -52,7 +60,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Wilobranch&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/moise/Desktop/SisEsc/SistemaEscolar/SistemaEscolar&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;/Users/wil/Desktop/SistemaEscolar/src/main/java/org/example/Main.java&quot;
@@ -94,6 +102,9 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainPrueba" />
+        <item itemvalue="Application.MainPrueba" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -185,23 +196,63 @@
       <option name="project" value="LOCAL" />
       <updated>1761588661107</updated>
     </task>
-    <task id="LOCAL-00011" summary="Lista de cambios:&#10;- Actualizada funcion insertPersonas">
+    <task id="LOCAL-00011" summary="Lista de cambios:&#10;- Cambios en general">
       <option name="closed" value="true" />
-      <created>1761589995616</created>
+      <created>1761596944418</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1761589995616</updated>
+      <updated>1761596944418</updated>
     </task>
-    <task id="LOCAL-00012" summary="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad">
+    <task id="LOCAL-00012" summary="Lista de cambios:&#10;- Cambios en general">
       <option name="closed" value="true" />
-      <created>1761595302662</created>
+      <created>1761598417699</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1761595302662</updated>
+      <updated>1761598417699</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Lista de cambios:&#10;- Cambios en general">
+      <option name="closed" value="true" />
+      <created>1761625151149</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1761625151150</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Lista de cambios:&#10;- Añadida logica para crear las tablas de cada apartado siguiendo la logica MVC.">
+      <option name="closed" value="true" />
+      <created>1761630731461</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1761630731461</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Lista de cambios:&#10;- Cambiada version de fxml en vistas">
+      <option name="closed" value="true" />
+      <created>1761631400208</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1761631400208</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Lista de cambios:&#10;- Cambios en general">
+      <option name="closed" value="true" />
+      <created>1761631496366</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1761631496366</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Lista de cambios:&#10;- Cambios en general">
+      <option name="closed" value="true" />
+      <created>1761632027844</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1761632027844</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,10 +275,10 @@
     <MESSAGE value="Cambios menores" />
     <MESSAGE value="Lista de cambios:&#10;- Añadido fxml Personas&#10;- Añadido controlador de clases de Personas" />
     <MESSAGE value="Lista de cambios:&#10;- Añadido fxml Personas" />
-    <MESSAGE value="Lista de cambios:&#10;- Cambios en general" />
     <MESSAGE value="Lista de cambios:&#10;- Terminada interfaz para agregar personas en la base de datos" />
-    <MESSAGE value="Lista de cambios:&#10;- Actualizada funcion insertPersonas" />
-    <MESSAGE value="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Actualizada funcion selectMateria&#10;- Creados metodos insert para materia, inscripcion y asistencia aun sin funcionalidad" />
+    <MESSAGE value="Lista de cambios:&#10;- Añadida logica para crear las tablas de cada apartado siguiendo la logica MVC." />
+    <MESSAGE value="Lista de cambios:&#10;- Cambiada version de fxml en vistas" />
+    <MESSAGE value="Lista de cambios:&#10;- Cambios en general" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lista de cambios:&#10;- Cambios en general" />
   </component>
 </project>

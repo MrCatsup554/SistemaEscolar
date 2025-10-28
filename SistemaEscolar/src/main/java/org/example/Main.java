@@ -13,16 +13,15 @@ import static javafx.application.Application.*;
 
 public class Main extends Application {
 
-    public void start(Stage escenario){
-        try{
-            Parent raiz = FXMLLoader.load(getClass().getResource("/PersonasVista.fxml"));
-            Scene escena = new Scene(raiz);
-            escenario.setScene(escena);
-            escenario.show();
-        } catch (IOException e){
-            System.err.println("Error al cargar la vista FXML: " + e.getMessage());
-        }
-
+    public void start(Stage stage) throws IOException {
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/InicioVista.fxml"));
+       
+        Scene scene = new Scene(root, 700, 600); 
+        
+        stage.setTitle("Sistema de Gestión"); 
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) throws JSchException {

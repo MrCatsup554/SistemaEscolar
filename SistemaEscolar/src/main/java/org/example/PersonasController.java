@@ -5,15 +5,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PersonasController implements Initializable {
+
+
+    public PersonasController() throws JSchException {
+    }
 
     ConexionBD basePersonas = new ConexionBD();
 
@@ -45,19 +55,73 @@ public class PersonasController implements Initializable {
     private TextField textApellido;
 
     @FXML
-    private TextArea textArPersonas;
-
-    @FXML
     private TextField textNombre;
 
-    public PersonasController() throws JSchException {
+    @FXML
+    private TableView<Personas> tblPersona;
+
+    @FXML
+    private TableColumn<Personas, String> colApellido;
+
+    @FXML
+    private TableColumn<Personas, String> colFh;
+
+    @FXML
+    private TableColumn<Personas, Integer> colId;
+
+    @FXML
+    private TableColumn<Personas, String> colNombre;
+
+    @FXML
+    private TableColumn<Personas, String> colRol;
+
+    @FXML
+    private TableColumn<Personas, String> colSexo;
+
+
+    @FXML private Button btnInicio;
+    @FXML private Button btnPersonas;
+    @FXML private Button btnAsistencia;
+    @FXML private Button btnMateria;
+    @FXML private Button btnInscripciones;
+
+    @FXML
+    void irAInicio(ActionEvent event) throws IOException {
+        cambiarVista(event, "InicioVista.fxml");
+    }
+    @FXML
+    void irAPersonas(ActionEvent event) throws IOException {
+        System.out.println("Ya estás en Personas.");
+    }
+    @FXML
+    void irAAsistencia(ActionEvent event) throws IOException {
+        cambiarVista(event, "AsistenciasVista.fxml");
+    }
+    @FXML
+    void irAMateria(ActionEvent event) throws IOException {
+        cambiarVista(event, "MateriasVista.fxml");
+    }
+    @FXML
+    void irAInscripciones(ActionEvent event) throws IOException {
+        cambiarVista(event, "InscripcionesVista.fxml");
+    }
+    private void cambiarVista(ActionEvent event, String fxmlFileName) throws IOException {
+        String fxmlPath = "/" + fxmlFileName;
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+        if (root == null) {
+            throw new IOException("No se pudo encontrar el archivo FXML en: " + fxmlPath);
+        }
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    }
+
+    private void cargarTablaPersonas() {
+        tblPersona.setItems(basePersonas.selectPersonas());
     }
 
     @FXML
     void verPersonas(ActionEvent event) {
-        String tablaPersonas = basePersonas.selectMateria();
-        textArPersonas.setText("");
-        textArPersonas.setText(tablaPersonas);
+        cargarTablaPersonas();
     }
 
     @FXML
@@ -68,7 +132,6 @@ public class PersonasController implements Initializable {
         String fh_nac = getFechaNac();
         int rol = getRolSel();
 
-        //Ingresar personas en la base de datos
         if(textNombre.getText().isBlank() || textApellido.getText().isBlank()){
             JOptionPane.showMessageDialog(
                     null,
@@ -96,7 +159,6 @@ public class PersonasController implements Initializable {
             System.out.println(nombre + " " + apellido + " " + sexoSel + " " + fh_nac + " " + rol);
             basePersonas.insertPersonas(nombre, apellido, sexoSel, fh_nac, rol);
 
-            //Borro los datos preparando para ingresar nuevos
             borrarDatos();
 
             nombre = null;
@@ -105,11 +167,7 @@ public class PersonasController implements Initializable {
             fh_nac = null;
             rol = 0;
 
-            //Mostrar personas actualizada en la tabla
-            textArPersonas.setText("");
-            String tablaPersonas = basePersonas.selectPersona();
-            textArPersonas.setText("");
-            textArPersonas.setText(tablaPersonas);
+            cargarTablaPersonas();
         }
     }
 
@@ -168,7 +226,13 @@ public class PersonasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Crea una lista observable con las opciones
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        colSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
+        colFh.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        colRol.setCellValueFactory(new PropertyValueFactory<>("rol"));
+
         selecRol.getSelectionModel().clearSelection();
         ObservableList<String> roles = FXCollections.observableArrayList(
                 "-- Seleccionar rol --",
@@ -178,8 +242,6 @@ public class PersonasController implements Initializable {
                 "Administrativo"
         );
         selecRol.setItems(roles);
-
-        // Opcional: Seleccionar una opción por defecto
         selecRol.getSelectionModel().selectFirst();
     }
 }
