@@ -33,8 +33,6 @@ public class ConexionBD {
         int port = sesion.setPortForwardingL(0, "localhost", 3306);
 
         conString = "jdbc:mariadb://localhost:" + port + "/its5a";
-
-        System.out.println("Conexion exitosa a la base de datos");
     }
 
     //PERSONAS
