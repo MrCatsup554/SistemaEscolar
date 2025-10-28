@@ -132,7 +132,6 @@ public class PersonasController implements Initializable {
         String fh_nac = getFechaNac();
         int rol = getRolSel();
 
-        //Ingresar personas en la base de datos
         if(textNombre.getText().isBlank() || textApellido.getText().isBlank()){
             JOptionPane.showMessageDialog(
                     null,
@@ -160,7 +159,6 @@ public class PersonasController implements Initializable {
             System.out.println(nombre + " " + apellido + " " + sexoSel + " " + fh_nac + " " + rol);
             basePersonas.insertPersonas(nombre, apellido, sexoSel, fh_nac, rol);
 
-            //Borro los datos preparando para ingresar nuevos
             borrarDatos();
 
             nombre = null;

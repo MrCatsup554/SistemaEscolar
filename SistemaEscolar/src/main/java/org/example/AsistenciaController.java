@@ -18,27 +18,20 @@ import java.util.ResourceBundle;
 
 public class AsistenciaController implements Initializable {
 
-    // --- Conexión a la Base de Datos ---
     private ConexionBD baseAsistencias;
 
-    // --- Variables FXML ---
-
-    // Botones del menú de navegación
     @FXML private Button btnInicio;
     @FXML private Button btnPersonas;
     @FXML private Button btnAsistencia;
     @FXML private Button btnMateria;
     @FXML private Button btnInscripciones;
 
-    // Campos de entrada
     @FXML private TextField textIdInscripcion;
     @FXML private DatePicker dateAsistencia;
 
-    // Botones de acción
     @FXML private Button btnVerAsistencias;
     @FXML private Button btnRegAsistencia;
 
-    // Área de texto para resultados
     @FXML private TextArea textArAsistencias;
 
     @FXML

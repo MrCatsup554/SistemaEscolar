@@ -118,12 +118,7 @@ public class InscripcionController implements Initializable {
             e.printStackTrace();
         }
     }
-    
-    // --- Métodos de Ayuda (Helpers) ---
 
-    /**
-     * Limpia los campos de entrada del formulario.
-     */
     private void borrarDatos() {
         textIdMateria.clear();
         textIdEstudiante.clear();
@@ -131,7 +126,6 @@ public class InscripcionController implements Initializable {
     }
 
     /**
-     * Muestra un diálogo de error genérico.
      * @param titulo Título de la ventana de error.
      * @param mensaje Mensaje de error a mostrar.
      */
@@ -142,11 +136,6 @@ public class InscripcionController implements Initializable {
                 titulo,
                 JOptionPane.ERROR_MESSAGE);
     }
-    
-
-    // ===================================================================
-    // --- INICIO: Bloque de Navegación (Ya lo tenías) ---
-    // ===================================================================
 
     @FXML private Button btnInicio;
     @FXML private Button btnPersonas;
@@ -188,8 +177,4 @@ public class InscripcionController implements Initializable {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.getScene().setRoot(root);
     }
-
-    // ===================================================================
-    // --- FIN: Bloque de Navegación ---
-    // ===================================================================
 }

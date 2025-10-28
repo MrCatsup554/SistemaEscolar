@@ -7,9 +7,9 @@
     <list default="true" id="ff5e2861-5fdd-4773-9f28-9bc9b7535c3c" name="Changes" comment="Lista de cambios:&#10;- Cambios en general">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/AsistenciaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/AsistenciaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConexionBD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/InicioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/InicioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/InscripcionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/InscripcionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MateriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MateriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PersonasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761631496366</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Lista de cambios:&#10;- Cambios en general">
+      <option name="closed" value="true" />
+      <created>1761632027844</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1761632027844</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
