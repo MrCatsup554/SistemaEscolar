@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 
@@ -19,6 +20,10 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PersonasController implements Initializable {
+
+
+    public PersonasController() throws JSchException {
+    }
 
     ConexionBD basePersonas = new ConexionBD();
 
@@ -50,11 +55,30 @@ public class PersonasController implements Initializable {
     private TextField textApellido;
 
     @FXML
-    private TextArea textArPersonas;
+    private TextField textNombre;
 
     @FXML
-    private TextField textNombre;
-    
+    private TableView<Personas> tblPersona;
+
+    @FXML
+    private TableColumn<Personas, String> colApellido;
+
+    @FXML
+    private TableColumn<Personas, String> colFh;
+
+    @FXML
+    private TableColumn<Personas, Integer> colId;
+
+    @FXML
+    private TableColumn<Personas, String> colNombre;
+
+    @FXML
+    private TableColumn<Personas, String> colRol;
+
+    @FXML
+    private TableColumn<Personas, String> colSexo;
+
+
     @FXML private Button btnInicio;
     @FXML private Button btnPersonas;
     @FXML private Button btnAsistencia;
@@ -65,29 +89,22 @@ public class PersonasController implements Initializable {
     void irAInicio(ActionEvent event) throws IOException {
         cambiarVista(event, "InicioVista.fxml");
     }
-
     @FXML
     void irAPersonas(ActionEvent event) throws IOException {
-        // Opcional: No hacer nada o recargar la vista si lo deseas
         System.out.println("Ya estás en Personas.");
-        // cambiarVista(event, "PersonasVista.fxml"); // Descomenta si quieres recargar
     }
-
     @FXML
     void irAAsistencia(ActionEvent event) throws IOException {
         cambiarVista(event, "AsistenciasVista.fxml");
     }
-
     @FXML
     void irAMateria(ActionEvent event) throws IOException {
         cambiarVista(event, "MateriasVista.fxml");
     }
-
     @FXML
     void irAInscripciones(ActionEvent event) throws IOException {
         cambiarVista(event, "InscripcionesVista.fxml");
     }
-
     private void cambiarVista(ActionEvent event, String fxmlFileName) throws IOException {
         String fxmlPath = "/" + fxmlFileName;
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
@@ -98,14 +115,13 @@ public class PersonasController implements Initializable {
         stage.getScene().setRoot(root);
     }
 
-    public PersonasController() throws JSchException {
+    private void cargarTablaPersonas() {
+        tblPersona.setItems(basePersonas.selectPersonas());
     }
 
     @FXML
     void verPersonas(ActionEvent event) {
-        String tablaPersonas = basePersonas.selectPersona();
-        textArPersonas.setText("");
-        textArPersonas.setText(tablaPersonas);
+        cargarTablaPersonas();
     }
 
     @FXML
@@ -153,11 +169,7 @@ public class PersonasController implements Initializable {
             fh_nac = null;
             rol = 0;
 
-            //Mostrar personas actualizada en la tabla
-            textArPersonas.setText("");
-            String tablaPersonas = basePersonas.selectPersona();
-            textArPersonas.setText("");
-            textArPersonas.setText(tablaPersonas);
+            cargarTablaPersonas();
         }
     }
 
@@ -216,6 +228,13 @@ public class PersonasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        colSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
+        colFh.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        colRol.setCellValueFactory(new PropertyValueFactory<>("rol"));
+
         selecRol.getSelectionModel().clearSelection();
         ObservableList<String> roles = FXCollections.observableArrayList(
                 "-- Seleccionar rol --",

@@ -10,7 +10,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
@@ -117,14 +116,7 @@
    </HBox>
 
     <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2a3a5c;" text="Personas Registradas:" />
-    <TextArea fx:id="textArPersonas" editable="false" prefHeight="90.0" prefWidth="595.0" style="-fx-background-color: #eaf0fb; -fx-border-color: #b0c4de; -fx-border-radius: 5;" wrapText="true">
-      <cursor>
-         <Cursor fx:constant="DEFAULT" />
-      </cursor>
-      <font>
-         <Font size="14.0" />
-      </font></TextArea>
-   <TableView fx:id="tblPersona" fixedCellSize="0.0" prefHeight="200.0" prefWidth="0.0">
+   <TableView fx:id="tblPersona" fixedCellSize="0.0" prefHeight="390.0" prefWidth="0.0">
      <columns>
        <TableColumn fx:id="colId" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="55.0" text="Id" />
        <TableColumn fx:id="colNombre" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="130.0" text="Nombre" />

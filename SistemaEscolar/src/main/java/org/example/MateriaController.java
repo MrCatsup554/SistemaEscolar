@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable; // Importar
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import javax.swing.*; // Importar
@@ -18,29 +17,35 @@ import java.util.ResourceBundle; // Importar
 
 public class MateriaController implements Initializable {
 
-    // --- Conexión a la Base de Datos ---
     private ConexionBD baseMaterias;
 
-    // --- Variables FXML ---
-
-    // Botones del menú de navegación
     @FXML private Button btnInicio;
     @FXML private Button btnPersonas;
     @FXML private Button btnAsistencia;
     @FXML private Button btnMateria;
     @FXML private Button btnInscripciones;
 
-    // Campos de entrada
     @FXML private TextField textDescripcion;
     @FXML private TextField textSemestre;
     @FXML private TextField textCreditos;
 
-    // Botones de acción
     @FXML private Button btnVerMaterias;
     @FXML private Button btnRegMateria;
 
-    // Área de texto para resultados
-    @FXML private TextArea textArMaterias;
+    @FXML
+    private TableColumn<Materias, Integer> colCred;
+
+    @FXML
+    private TableColumn<Materias, String> colDesc;
+
+    @FXML
+    private TableColumn<Materias, Integer> colId;
+
+    @FXML
+    private TableColumn<Materias, Integer> colSem;
+
+    @FXML
+    private TableView<Materias> tblMaterias;
 
     public MateriaController() {
         try {
@@ -53,9 +58,11 @@ public class MateriaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("idMateria"));
+        colDesc.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colSem.setCellValueFactory(new PropertyValueFactory<>("semestre"));
+        colCred.setCellValueFactory(new PropertyValueFactory<>("creditos"));
     }
-
-    // --- Métodos de Navegación ---
     
     @FXML
     void irAInicio(ActionEvent event) throws IOException {
@@ -82,6 +89,11 @@ public class MateriaController implements Initializable {
         cambiarVista(event, "InscripcionesVista.fxml");
     }
 
+    private void cargarTablaMaterias() {
+        // La lista que devuelve el método ya es de tipo ObservableList<Materias>
+        tblMaterias.setItems(baseMaterias.selectMaterias());
+    }
+
     private void cambiarVista(ActionEvent event, String fxmlFileName) throws IOException {
         String fxmlPath = "/" + fxmlFileName;
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
@@ -94,14 +106,7 @@ public class MateriaController implements Initializable {
 
     @FXML
     void verMaterias(ActionEvent event) {
-        if (baseMaterias == null) return; // No hacer nada si la conexión falló
-
-        try {
-            String tablaMaterias = baseMaterias.selectMateria();
-            textArMaterias.setText(tablaMaterias);
-        } catch (Exception e) {
-            mostrarError("Error de Consulta", "No se pudieron cargar las materias: " + e.getMessage());
-        }
+        cargarTablaMaterias();
     }
 
     @FXML
@@ -135,30 +140,20 @@ public class MateriaController implements Initializable {
 
             // Limpiar campos y refrescar la tabla
             borrarDatos();
-            verMaterias(null); // Refresca el TextArea
+            cargarTablaMaterias();
 
         } catch (Exception e) {
             mostrarError("Error de Registro", "No se pudo registrar la materia: " + e.getMessage());
             e.printStackTrace();
         }
     }
-    
-    // --- Métodos de Ayuda (Helpers) ---
 
-    /**
-     * Limpia los campos de entrada del formulario.
-     */
     private void borrarDatos() {
         textDescripcion.clear();
         textSemestre.clear();
         textCreditos.clear();
     }
 
-    /**
-     * Muestra un diálogo de error genérico.
-     * @param titulo Título de la ventana de error.
-     * @param mensaje Mensaje de error a mostrar.
-     */
     private void mostrarError(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(
                 null,

@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable; // Importar
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import javax.swing.*; // Importar
@@ -29,9 +28,21 @@ public class InscripcionController implements Initializable {
     @FXML private Button btnRegInscripcion;
     @FXML private TextArea textArInscripciones;
 
-    /**
-     * Constructor: Inicializa la conexión a la BD.
-     */
+    @FXML
+    private TableColumn<Inscripciones, Integer> colCal;
+
+    @FXML
+    private TableColumn<Inscripciones, Integer> colEst;
+
+    @FXML
+    private TableColumn<Inscripciones, Integer> colId;
+
+    @FXML
+    private TableColumn<Inscripciones, Integer> colMat;
+
+    @FXML
+    private TableView<Inscripciones> tblInsc;
+
     public InscripcionController() {
         try {
             this.baseInscripciones = new ConexionBD();
@@ -41,27 +52,21 @@ public class InscripcionController implements Initializable {
         }
     }
 
-    /**
-     * Se llama después de que se cargan los elementos FXML.
-     * Carga las inscripciones existentes al iniciar.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
+    private void cargarTablaInscripciones() {
+        tblInsc.setItems(baseInscripciones.selectInscripciones());
     }
 
-    // --- Métodos de Acción (onAction) ---
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("idInscripcion"));
+        colMat.setCellValueFactory(new PropertyValueFactory<>("idMateria"));
+        colEst.setCellValueFactory(new PropertyValueFactory<>("idEstudiante"));
+        colCal.setCellValueFactory(new PropertyValueFactory<>("calificacion"));
+    }
 
     @FXML
     void verInscripciones(ActionEvent event) {
-        if (baseInscripciones == null) return; // No hacer nada si la conexión falló
-
-        try {
-            String tablaInscripciones = baseInscripciones.selectInscripciones();
-            textArInscripciones.setText(tablaInscripciones);
-        } catch (Exception e) {
-            mostrarError("Error de Consulta", "No se pudieron cargar las inscripciones: " + e.getMessage());
-        }
+        cargarTablaInscripciones();
     }
 
     @FXML
@@ -101,14 +106,12 @@ public class InscripcionController implements Initializable {
                 return;
             }
         }
-
-        // --- Inserción en la BD ---
         try {
             baseInscripciones.insertInscripcion(idMateria, idEstudiante, calificacion);
 
             // Limpiar campos y refrescar la tabla
             borrarDatos();
-            verInscripciones(null); // Refresca el TextArea
+            cargarTablaInscripciones();
 
         } catch (Exception e) {
             // Captura errores comunes como Clave Foránea (FOREIGN KEY)

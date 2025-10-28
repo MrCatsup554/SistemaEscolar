@@ -38,45 +38,37 @@ public class ConexionBD {
     }
 
     //PERSONAS
-    public String selectPersona() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-5s | %-15s | %-15s | %-8s | %-12s | %-15s\n",
-                "ID", "Nombre", "Apellido", "Sexo", "Fec. Nac.", "Rol"));
-        sb.append("-".repeat(75));
-        sb.append("\n");
+    public ObservableList<Personas> selectPersonas() {
+        ObservableList<Personas> listaPersonas = FXCollections.observableArrayList();
 
+        // Asegúrate de que conString, dbUser, dbPass estén definidos.
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
             String sql =
                     "select id_persona, nombre, apellido," +
-                            "case when sexo = 'h' then 'Hombre' " +
-                            "when sexo = 'm' then 'Mujer' " +
-                            "else 'Otro' end as sexo," +
-                            "fh_nac," +
-                            "case " +
-                            "when id_rol = 1 then 'Estudiante' " +
-                            "when id_rol = 2 then 'Profesor' " +
-                            "when id_rol = 3 then 'Directivo' " +
-                            "else 'Administrativo' end as rol " +
-                            "from personas_escuela " +
-                            "order by id_persona desc;";
+                            "case when sexo = 'h' then 'Hombre' when sexo = 'm' then 'Mujer' else 'Otro' end as sexo," +
+                            "fh_nac, " +
+                            "case when id_rol = 1 then 'Estudiante' when id_rol = 2 then 'Profesor' when id_rol = 3 then 'Directivo' else 'Administrativo' end as rol " +
+                            "from personas_escuela order by id_persona desc;";
+
             ResultSet resultado = sentencia.executeQuery(sql);
 
             while (resultado.next()) {
-                String id_persona = resultado.getString(1);
+                // Recoger los datos usando el índice de columna
+                int id = resultado.getInt(1);
                 String nombre = resultado.getString(2);
                 String apellido = resultado.getString(3);
                 String sexo = resultado.getString(4);
                 String fh_nac = resultado.getString(5);
                 String rol = resultado.getString(6);
 
-                sb.append(String.format("%-5s | %-15s | %-15s | %-8s | %-12s | %-15s\n",
-                        id_persona, nombre, apellido, sexo, fh_nac, rol));
+                // Crear el objeto Persona y añadirlo a la lista
+                listaPersonas.add(new Personas(id, nombre, apellido, sexo, fh_nac, rol));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error al cargar datos de la BD: " + e.getMessage());
         }
-        return sb.toString();
+        return listaPersonas;
     }
     public void insertPersonas(String nombre, String apellido, char sexo, String fh_nac, int id_rol) {
 
@@ -100,17 +92,16 @@ public class ConexionBD {
     }
 
     //MATERIAS
-    public String selectMateria() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-5s | %-30s | %-10s | %-10s\n", "ID", "Descripción", "Semestre", "Créditos"));
-        sb.append("-".repeat(65));
-        sb.append("\n");
+    public ObservableList<Materias> selectMaterias() {
+        ObservableList<Materias> listaMaterias = FXCollections.observableArrayList();
 
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
+
             String sql =
                     "select id_materia, descripcion, semestre, creditos from materias " +
                             "order by id_materia desc;";
+
             ResultSet resultado = sentencia.executeQuery(sql);
 
             while (resultado.next()) {
@@ -119,13 +110,16 @@ public class ConexionBD {
                 int semestre = resultado.getInt("semestre");
                 int creditos = resultado.getInt("creditos");
 
-                sb.append(String.format("%-5d | %-30s | %-10d | %-10d\n",
-                        id_materia, descripcion, semestre, creditos));
+                Materias nuevaMateria = new Materias(id_materia, descripcion, semestre, creditos);
+
+                listaMaterias.add(nuevaMateria);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error al cargar datos de materias: " + e.getMessage());
+            return FXCollections.observableArrayList();
         }
-        return sb.toString();
+
+        return listaMaterias;
     }
     public void insertMateria(String descripcion, int semestre, int creditos) {
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
@@ -146,11 +140,8 @@ public class ConexionBD {
     }
 
     //ASISTENCIAS
-    public String selectAsistencias() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-12s | %-15s | %-15s\n", "ID Asistencia", "ID Inscripción", "Fecha"));
-        sb.append("-".repeat(47));
-        sb.append("\n");
+    public ObservableList<Asistencias> selectAsistencias() {
+        ObservableList<Asistencias> listaAsistencias = FXCollections.observableArrayList();
 
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
@@ -163,12 +154,18 @@ public class ConexionBD {
                 int id_asistencia = resultado.getInt("id_asistencia");
                 int id_inscripcion = resultado.getInt("id_inscripcion");
                 String fecha = resultado.getString("fecha");
-                sb.append(String.format("%-12d | %-15d | %-15s\n", id_asistencia, id_inscripcion, fecha));
+
+                // Crear el objeto Asistencias (clase modelo en plural)
+                Asistencias nuevaAsistencia = new Asistencias(id_asistencia, id_inscripcion, fecha);
+
+                // Añadir a la lista observable
+                listaAsistencias.add(nuevaAsistencia);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error al cargar datos de asistencias: " + e.getMessage());
+            return FXCollections.observableArrayList();
         }
-        return sb.toString();
+        return listaAsistencias;
     }
     public void insertAsistencia(int id_inscripcion, String fecha) {
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
@@ -187,11 +184,8 @@ public class ConexionBD {
     }
 
     //INSCRIPCIONES
-    public String selectInscripciones() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-15s | %-10s | %-12s | %-12s\n", "ID Inscripción", "ID Materia", "ID Estudiante", "Calificación"));
-        sb.append("-".repeat(57));
-        sb.append("\n");
+    public ObservableList<Inscripciones> selectInscripciones() {
+        ObservableList<Inscripciones> listaInscripciones = FXCollections.observableArrayList();
 
         try (Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {
             Statement sentencia = con.createStatement();
@@ -205,13 +199,15 @@ public class ConexionBD {
                 int id_estudiante = resultado.getInt("id_estudiante");
                 int calificacion = resultado.getInt("calificacion");
 
-                sb.append(String.format("%-15d | %-10d | %-12d | %-12d\n",
-                        id_inscripcionBD, id_materia, id_estudiante, calificacion));
+                // Crear el objeto Inscripciones y añadirlo a la lista
+                Inscripciones nuevaInscripcion = new Inscripciones(id_inscripcionBD, id_materia, id_estudiante, calificacion);
+                listaInscripciones.add(nuevaInscripcion);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error al cargar datos de inscripciones: " + e.getMessage());
+            return FXCollections.observableArrayList();
         }
-        return sb.toString();
+        return listaInscripciones;
     }
     public void insertInscripcion(int id_materia, int id_estudiante, int calificacion) {
         try(Connection con = DriverManager.getConnection(conString, dbUser, dbPass)) {

@@ -6,10 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -43,9 +41,18 @@ public class AsistenciaController implements Initializable {
     // Área de texto para resultados
     @FXML private TextArea textArAsistencias;
 
-    /**
-     * Constructor: Inicializa la conexión a la BD.
-     */
+    @FXML
+    private TableColumn<Asistencias, String> colFh;
+
+    @FXML
+    private TableColumn<Asistencias, Integer> colId;
+
+    @FXML
+    private TableColumn<Asistencias, Integer> colIns;
+
+    @FXML
+    private TableView<Asistencias> tblAsistencias;
+
     public AsistenciaController() {
         try {
             this.baseAsistencias = new ConexionBD();
@@ -55,17 +62,17 @@ public class AsistenciaController implements Initializable {
         }
     }
 
-    /**
-     * Se llama después de que se cargan los elementos FXML.
-     * Carga las asistencias existentes al iniciar.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
+    private void cargarTablaAsistencias() {
+        tblAsistencias.setItems(baseAsistencias.selectAsistencias());
     }
 
-    // --- Métodos de Navegación ---
-    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("idAsistencia"));
+        colIns.setCellValueFactory(new PropertyValueFactory<>("idInscripcion"));
+        colFh.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+    }
+
     @FXML
     void irAInicio(ActionEvent event) throws IOException {
         cambiarVista(event, "InicioVista.fxml");
@@ -101,29 +108,19 @@ public class AsistenciaController implements Initializable {
         stage.getScene().setRoot(root);
     }
 
-    // --- Métodos de Acción (onAction) ---
-
     @FXML
     void verAsistencias(ActionEvent event) {
-        if (baseAsistencias == null) return; // No hacer nada si la conexión falló
-
-        try {
-            String tablaAsistencias = baseAsistencias.selectAsistencias();
-            textArAsistencias.setText(tablaAsistencias);
-        } catch (Exception e) {
-            mostrarError("Error de Consulta", "No se pudieron cargar las asistencias: " + e.getMessage());
-        }
+        cargarTablaAsistencias();
     }
 
     @FXML
     void registrarAsistencia(ActionEvent event) {
-        if (baseAsistencias == null) return; // No hacer nada si la conexión falló
+        if (baseAsistencias == null) return;
 
         String idInscripcionStr = textIdInscripcion.getText();
         String fecha = getFechaAsistencia();
         int idInscripcion;
 
-        // --- Validación de Entradas ---
         if (idInscripcionStr.isBlank()) {
             mostrarError("Campo Vacío", "Debe ingresar un ID de Inscripción.");
             return;
@@ -141,26 +138,18 @@ public class AsistenciaController implements Initializable {
             return;
         }
 
-        // --- Inserción en la BD ---
         try {
             baseAsistencias.insertAsistencia(idInscripcion, fecha);
-            
-            // Limpiar campos y refrescar la tabla
+
             borrarDatos();
-            verAsistencias(null); // Refresca el TextArea
+            cargarTablaAsistencias();
 
         } catch (Exception e) {
             mostrarError("Error de Registro", "No se pudo registrar la asistencia: " + e.getMessage());
             e.printStackTrace();
         }
     }
-    
-    // --- Métodos de Ayuda (Helpers) ---
 
-    /**
-     * Obtiene la fecha del DatePicker en formato String YYYY-MM-DD.
-     * @return String de la fecha, o null si no hay fecha seleccionada.
-     */
     private String getFechaAsistencia() {
         LocalDate fechaAsistencia = dateAsistencia.getValue();
         if (fechaAsistencia != null) {
@@ -170,19 +159,11 @@ public class AsistenciaController implements Initializable {
         }
     }
 
-    /**
-     * Limpia los campos de entrada del formulario.
-     */
     private void borrarDatos() {
         textIdInscripcion.clear();
         dateAsistencia.setValue(null);
     }
-    
-    /**
-     * Muestra un diálogo de error genérico.
-     * @param titulo Título de la ventana de error.
-     * @param mensaje Mensaje de error a mostrar.
-     */
+
     private void mostrarError(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(
                 null,
